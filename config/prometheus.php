@@ -50,6 +50,16 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | The statistical period(seconds) of the maximum duration metric http_server_requests_seconds_max.
+    |--------------------------------------------------------------------------
+    |
+    | Default 60s.
+    |
+    */
+    'max_duration_stat_period' => env('PROMETHEUS_MAX_DURATION_STAT_PERIOD', 60),
+
+    /*
+    |--------------------------------------------------------------------------
     | The ignored status codes when collecting http requests.
     |--------------------------------------------------------------------------
     |
