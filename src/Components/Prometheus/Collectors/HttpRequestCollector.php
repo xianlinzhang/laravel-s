@@ -16,6 +16,10 @@ class HttpRequestCollector extends MetricCollector
     public function __construct(array $config)
     {
         parent::__construct($config);
+        
+        if (!isset($this->config['max_duration_time_window'])) {
+            $this->config['max_duration_time_window'] = 60;
+        }
 
         $routes = method_exists(app(), 'getRoutes') ? app()->getRoutes() : app('router')->getRoutes();
         if ($routes instanceof \Illuminate\Routing\RouteCollection) { // Laravel
