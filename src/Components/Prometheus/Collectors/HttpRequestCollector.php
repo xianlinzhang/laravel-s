@@ -84,7 +84,7 @@ class HttpRequestCollector extends MetricCollector
             $round++;
             $lastCost = apcu_fetch($maxKey);
             if ($lastCost === false) {
-                if (!apcu_add($maxKey, $cost, $this->config['max_duration_stat_period'])) {
+                if (!apcu_add($maxKey, $cost, $this->config['max_duration_time_window'])) {
                     continue;
                 }
                 break;

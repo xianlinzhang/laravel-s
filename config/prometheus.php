@@ -50,13 +50,13 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | The statistical period(seconds) of the maximum duration metric http_server_requests_seconds_max.
+    | The time window(seconds) of the maximum duration metric for http_server_requests_seconds_max.
     |--------------------------------------------------------------------------
     |
     | Default 60s.
     |
     */
-    'max_duration_stat_period' => env('PROMETHEUS_MAX_DURATION_STAT_PERIOD', 60),
+    'max_duration_time_window' => env('PROMETHEUS_REQUEST_MAX_DURATION_TIME_WINDOW', 60),
 
     /*
     |--------------------------------------------------------------------------
