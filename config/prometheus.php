@@ -50,6 +50,16 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | The time window(seconds) of the maximum duration metric for http_server_requests_seconds_max.
+    |--------------------------------------------------------------------------
+    |
+    | Default 60s.
+    |
+    */
+    'max_duration_time_window' => env('PROMETHEUS_REQUEST_MAX_DURATION_TIME_WINDOW', 60),
+
+    /*
+    |--------------------------------------------------------------------------
     | The ignored status codes when collecting http requests.
     |--------------------------------------------------------------------------
     |
