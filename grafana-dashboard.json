@@ -18,8 +18,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 1,
-  "id": 2,
-  "iteration": 1637487643327,
+  "id": 1,
+  "iteration": 1734057491478,
   "links": [],
   "panels": [
     {
@@ -523,7 +523,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Top Duration",
+      "title": "Avg Duration",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -564,7 +564,7 @@
     },
     {
       "aliasColors": {},
-      "bars": true,
+      "bars": false,
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
@@ -581,20 +581,19 @@
         "y": 17
       },
       "hiddenSeries": false,
-      "id": 12,
+      "id": 40,
       "interval": null,
       "legend": {
         "alignAsTable": false,
-        "avg": false,
+        "avg": true,
         "current": true,
-        "max": false,
-        "min": false,
-        "rightSide": false,
+        "max": true,
+        "min": true,
         "show": true,
         "total": false,
         "values": true
       },
-      "lines": false,
+      "lines": true,
       "linewidth": 1,
       "nullPointMode": "null",
       "options": {
@@ -612,10 +611,11 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "topk(10, sum(http_server_requests_seconds_count{application=\"$application\"}) by (application, method, uri))",
+          "expr": "topk(20, max(http_server_requests_seconds_max{application=\"$application\"}) by (application, method, uri))",
           "format": "time_series",
-          "instant": true,
-          "interval": "1",
+          "hide": false,
+          "instant": false,
+          "interval": "",
           "intervalFactor": 1,
           "legendFormat": "{{application}}-{{method}}-{{uri}}",
           "refId": "A"
@@ -625,40 +625,38 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Top Requests",
+      "title": "Max Duration",
       "tooltip": {
-        "shared": false,
+        "shared": true,
         "sort": 2,
         "value_type": "individual"
       },
       "type": "graph",
       "xaxis": {
         "buckets": null,
-        "mode": "series",
+        "mode": "time",
         "name": null,
-        "show": false,
-        "values": [
-          "current"
-        ]
+        "show": true,
+        "values": []
       },
       "yaxes": [
         {
-          "$$hashKey": "object:568",
-          "format": "short",
-          "label": null,
+          "$$hashKey": "object:24",
+          "format": "µs",
+          "label": "",
           "logBase": 1,
           "max": null,
           "min": null,
           "show": true
         },
         {
-          "$$hashKey": "object:569",
+          "$$hashKey": "object:25",
           "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": true
+          "show": false
         }
       ],
       "yaxis": {
@@ -776,7 +774,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
-      "description": "",
       "fieldConfig": {
         "defaults": {},
         "overrides": []
@@ -788,6 +785,111 @@
         "w": 12,
         "x": 12,
         "y": 26
+      },
+      "hiddenSeries": false,
+      "id": 12,
+      "interval": null,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": false,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.11",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "topk(10, sum(http_server_requests_seconds_count{application=\"$application\"}) by (application, method, uri))",
+          "format": "time_series",
+          "instant": true,
+          "interval": "1",
+          "intervalFactor": 1,
+          "legendFormat": "{{application}}-{{method}}-{{uri}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Top Requests",
+      "tooltip": {
+        "shared": false,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "series",
+        "name": null,
+        "show": false,
+        "values": [
+          "current"
+        ]
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:568",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:569",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 35
       },
       "hiddenSeries": false,
       "id": 22,
@@ -882,7 +984,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 35
+        "y": 44
       },
       "id": 39,
       "panels": [],
@@ -905,7 +1007,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 36
+        "y": 45
       },
       "hiddenSeries": false,
       "id": 21,
@@ -1026,7 +1128,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 36
+        "y": 45
       },
       "hiddenSeries": false,
       "id": 19,
@@ -1134,7 +1236,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 45
+        "y": 54
       },
       "hiddenSeries": false,
       "id": 25,
@@ -1241,7 +1343,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 45
+        "y": 54
       },
       "hiddenSeries": false,
       "id": 26,
@@ -1348,7 +1450,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 53
+        "y": 62
       },
       "hiddenSeries": false,
       "id": 37,
@@ -1446,7 +1548,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 62
+        "y": 71
       },
       "id": 32,
       "panels": [],
@@ -1469,7 +1571,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 63
+        "y": 72
       },
       "hiddenSeries": false,
       "id": 16,
@@ -1575,7 +1677,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 63
+        "y": 72
       },
       "hiddenSeries": false,
       "id": 17,
@@ -1687,7 +1789,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 71
+        "y": 80
       },
       "hiddenSeries": false,
       "id": 20,
@@ -1783,7 +1885,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 71
+        "y": 80
       },
       "hiddenSeries": false,
       "id": 23,
@@ -1878,7 +1980,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 80
+        "y": 89
       },
       "id": 34,
       "panels": [],
@@ -1901,7 +2003,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 81
+        "y": 90
       },
       "hiddenSeries": false,
       "id": 28,
@@ -2030,7 +2132,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 81
+        "y": 90
       },
       "hiddenSeries": false,
       "id": 27,
@@ -2159,7 +2261,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 89
+        "y": 98
       },
       "hiddenSeries": false,
       "id": 36,
@@ -2283,8 +2385,8 @@
         "allValue": "''",
         "current": {
           "selected": false,
-          "text": "Lumen8",
-          "value": "Lumen8"
+          "text": "Lumen",
+          "value": "Lumen"
         },
         "datasource": null,
         "definition": "label_values(application)",
@@ -2313,7 +2415,7 @@
       {
         "allValue": "",
         "current": {
-          "selected": false,
+          "selected": true,
           "text": [
             "All"
           ],
@@ -2355,5 +2457,5 @@
   "timezone": "",
   "title": "LaravelS Service Monitor",
   "uid": "GHNOMaF7z",
-  "version": 123
+  "version": 7
 }
